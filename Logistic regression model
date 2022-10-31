@@ -1,0 +1,221 @@
+at= Avian_influenza_data
+
+dat$age[dat$Age_of_bird..Month. == "3"] = "1"
+dat$age[dat$Age_of_bird..Month. == "4"] = "1"
+dat$age[dat$Age_of_bird..Month. == "5"] = "1"
+dat$age[dat$Age_of_bird..Month. == "6"] = "1"
+
+dat$age[dat$Age_of_bird..Month. == "7"] = "2"
+dat$age[dat$Age_of_bird..Month. == "8"] = "2"
+dat$age[dat$Age_of_bird..Month. == "9"] = "2"
+
+dat$age[dat$Age_of_bird..Month. == "11"] = "3"
+dat$age[dat$Age_of_bird..Month. == "12"] = "3"
+dat$age[dat$Age_of_bird..Month. == "13"] = "3"
+dat$age[dat$Age_of_bird..Month. == "15"] = "3"
+dat$age[dat$Age_of_bird..Month. == "16"] = "3"
+dat$age[dat$Age_of_bird..Month. == "25"] = "3"
+dat$age[dat$Age_of_bird..Month. == "36"] = "3"
+dat$age[dat$Age_of_bird..Month. == "24"] = "3"
+
+dat$result[dat$Interpretation..AI.== "TRUE"]= '1'
+dat$result[dat$Interpretation..AI.== "FALSE"]= '0'
+
+# Univariate#
+dat$result= as.factor(dat$result)
+age= glm(dat$result ~ dat$age, family = 'binomial')
+summary(age)
+anova(age,test = 'Chisq')
+exp(coef(age))
+exp(confint(age))
+table(dat$Interpretation..AI., dat$age)
+
+sex= glm(dat$result ~ dat$Sex_of_bird, family = 'binomial')
+summary(sex)
+anova(sex, test = 'Chisq')
+exp(coef(sex))
+exp(confint(sex))
+table(dat$Interpretation..AI., dat$Sex_of_bird)
+
+dat$Upazilla = as.factor(dat$Upazilla)
+dat$Upazilla= relevel(dat$Upazilla, ref = 'South-Sunamganj')
+upz= glm(dat$Interpretation..AI. ~ dat$Upazilla, family = 'binomial')
+summary(upz)
+anova(upz, test = 'Chisq')
+exp(coef(upz))
+exp(confint(upz))
+table(dat$Interpretation..AI., dat$Upazilla)
+
+
+flock= glm(dat$Interpretation..AI. ~ dat$Chicken_flock_size, family = 'binomial')
+summary(flock)
+anova(flock, test = 'Chisq')
+exp(coef(flock))
+exp(confint(flock))
+table(dat$Interpretation..AI., dat$Chicken_flock_size)
+
+dat$Rearing_Duck.= as.factor(dat$Rearing_Duck.)
+dat$Rearing_Duck.= relevel(dat$Rearing_Duck., ref= "Yes")
+duck= glm(dat$Interpretation..AI. ~ dat$Rearing_Duck., family = 'binomial')
+summary(duck)
+anova(duck, test = 'Chisq')
+exp(coef(duck))
+exp(confint(duck))
+table(dat$Interpretation..AI., dat$Rearing_Duck.)
+
+dat$Rearing.pet.animal.= as.factor(dat$Rearing.pet.animal.)
+dat$Rearing.pet.animal.= relevel(dat$Rearing.pet.animal., ref= "Yes")
+pet= glm(dat$Interpretation..AI. ~ dat$Rearing.pet.animal., family = 'binomial')
+summary(pet)
+anova(pet, test = 'Chisq')
+exp(coef(pet))
+exp(confint(pet))
+table(dat$Interpretation..AI., dat$Rearing.pet.animal.)
+
+wild= glm(dat$Interpretation..AI. ~ dat$Meet.with.wildlife., family = 'binomial')
+summary(wild)
+anova(wild, test = 'Chisq')
+exp(coef(wild))
+exp(confint(wild))
+table(dat$Interpretation..AI., dat$Meet.with.wildlife.)
+
+scav= glm(dat$Interpretation..AI. ~ dat$Scavenging.area.of.chicken., family = 'binomial')
+summary(scav)
+anova(scav, test = 'Chisq')
+exp(coef(scav))
+exp(confint(scav))
+table(dat$Interpretation..AI., dat$Scavenging.area.of.chicken.)
+
+dat$litter.disposal. = as.factor(dat$litter.disposal.)
+dat$litter.disposal.= relevel(dat$litter.disposal., ref = 'Throw along roadside')
+litter= glm(dat$Interpretation..AI. ~ dat$litter.disposal., family = 'binomial')
+summary(litter)
+anova(litter, test = 'Chisq')
+exp(coef(litter))
+exp(confint(litter))
+table(dat$Interpretation..AI., dat$litter.disposal.)
+
+dead= glm(dat$Interpretation..AI. ~ dat$Dead.bird.disposal., family = 'binomial')
+summary(dead)
+anova(dead, test = 'Chisq')
+exp(coef(dead))
+exp(confint(dead))
+table(dat$Interpretation..AI., dat$Dead.bird.disposal.)
+
+venti= glm(dat$Interpretation..AI. ~ dat$Housing.ventilation., family = 'binomial')
+summary(venti)
+anova(venti, test = 'Chisq')
+exp(coef(venti))
+exp(confint(venti))
+table(dat$Interpretation..AI., dat$Housing.ventilation.)
+
+dat$Poultry.house.cleaning.frequency. = as.factor(dat$Poultry.house.cleaning.frequency.)
+dat$Poultry.house.cleaning.frequency.= relevel(dat$Poultry.house.cleaning.frequency., ref = 'Once in a week')
+clean= glm(dat$Interpretation..AI. ~ dat$Poultry.house.cleaning.frequency., family = 'binomial')
+summary(clean)
+anova(clean, test = 'Chisq')
+exp(coef(clean))
+exp(confint(clean))
+table(dat$Interpretation..AI., dat$Poultry.house.cleaning.frequency.)
+
+dat$Waterer.cleaning.frequency. = as.factor(dat$Waterer.cleaning.frequency.)
+dat$Waterer.cleaning.frequency.= relevel(dat$Waterer.cleaning.frequency., ref = 'Once in a week')
+water= glm(dat$Interpretation..AI. ~ dat$Waterer.cleaning.frequency., family = 'binomial')
+summary(water)
+anova(water, test = 'Chisq')
+exp(coef(water))
+exp(confint(water))
+table(dat$Interpretation..AI., dat$Waterer.cleaning.frequency.)
+
+location= glm(dat$Interpretation..AI. ~ dat$Poultry.house.location., family = 'binomial')
+summary(location)
+anova(location, test = 'Chisq')
+exp(coef(location))
+exp(confint(location))
+table(dat$Interpretation..AI., dat$Poultry.house.location.)
+
+dat$Feed.whole.rice.= as.factor(dat$Feed.whole.rice.)
+dat$Feed.whole.rice.= relevel(dat$Feed.whole.rice., ref= "Yes")
+whole= glm(dat$Interpretation..AI. ~ dat$Feed.whole.rice., family = 'binomial')
+summary(whole)
+anova(whole, test = 'Chisq')
+exp(coef(whole))
+exp(confint(whole))
+table(dat$Interpretation..AI., dat$Feed.whole.rice.)
+
+boiled= glm(dat$Interpretation..AI. ~ dat$Feed.boiled.rice., family = 'binomial')
+summary(boiled)
+anova(boiled, test = 'Chisq')
+exp(coef(boiled))
+exp(confint(boiled))
+table(dat$Interpretation..AI., dat$Feed.boiled.rice.)
+
+
+dat$Feed.rice.bran.= as.factor(dat$Feed.rice.bran.)
+dat$Feed.rice.bran.= relevel(dat$Feed.rice.bran., ref= "Yes")
+bran= glm(dat$Interpretation..AI. ~ dat$Feed.rice.bran., family = 'binomial')
+summary(bran)
+anova(bran, test = 'Chisq')
+exp(coef(bran))
+exp(confint(bran))
+table(dat$Interpretation..AI., dat$Feed.rice.bran.)
+
+scrap= glm(dat$Interpretation..AI. ~ dat$Feed.food.scraps., family = 'binomial')
+summary(scrap)
+anova(scrap, test = 'Chisq')
+exp(coef(scrap))
+exp(confint(scrap))
+table(dat$Interpretation..AI., dat$Feed.food.scraps.)
+
+dat$Feed.commercial.food.= as.factor(dat$Feed.commercial.food.)
+dat$Feed.commercial.food.= relevel(dat$Feed.commercial.food., ref= "Yes")
+comm= glm(dat$Interpretation..AI. ~ dat$Feed.commercial.food., family = 'binomial')
+summary(comm)
+anova(comm, test = 'Chisq')
+exp(coef(comm))
+exp(confint(comm))
+table(dat$Interpretation..AI., dat$Feed.commercial.food.)
+
+dat$Bamboo.poultry.house. = as.factor(dat$Bamboo.poultry.house.)
+dat$Bamboo.poultry.house.= relevel(dat$Bamboo.poultry.house., ref = 'Yes')
+bamboo= glm(dat$Interpretation..AI. ~ dat$Bamboo.poultry.house., family = 'binomial')
+summary(bamboo)
+anova(bamboo, test = 'Chisq')
+exp(coef(bamboo))
+exp(confint(bamboo))
+table(dat$Interpretation..AI., dat$Bamboo.poultry.house.)
+
+dat$Mud.poultry.house. = as.factor(dat$Mud.poultry.house.)
+dat$Mud.poultry.house.= relevel(dat$Mud.poultry.house., ref = 'Yes')
+mud= glm(dat$Interpretation..AI. ~ dat$Mud.poultry.house., family = 'binomial')
+summary(mud)
+anova(mud, test = 'Chisq')
+exp(coef(mud))
+exp(confint(mud))
+table(dat$Interpretation..AI., dat$Mud.poultry.house.)
+
+dat$Mud.poultry.house. = as.factor(dat$Mud.poultry.house.)
+dat$Mud.poultry.house.= relevel(dat$Mud.poultry.house., ref = 'Yes')
+conc= glm(dat$Interpretation..AI. ~ dat$Concrete.poultry.house., family = 'binomial')
+summary(conc)
+anova(conc, test = 'Chisq')
+exp(coef(conc))
+exp(confint(conc))
+table(dat$Interpretation..AI., dat$Concrete.poultry.house.)
+
+
+
+
+# Multivariate #
+dat$Feed.rice.bran.= relevel(dat$Feed.rice.bran., ref = 'Yes')
+dat$Mud.poultry.house.= relevel(dat$Mud.poultry.house., ref = 'Yes')
+dat$Bamboo.poultry.house.= relevel(dat$Bamboo.poultry.house., ref = 'Yes')
+final.model1= glm(dat$Interpretation..AI. ~ dat$Feed.rice.bran. + dat$Poultry.house.location.+
+               dat$Mud.poultry.house. + dat$Upazilla + dat$Meet.with.wildlife.+ dat$Bamboo.poultry.house., family = 'binomial')
+
+
+
+summary(final.model1)
+anova(final.model1, test = "Chisq")
+exp(coef(final.model1))
+exp(confint(final.model1))
